@@ -1,4 +1,5 @@
 use iced::widget::Text;
+use iced::window;
 use iced::Element;
 use iced::Sandbox;
 use iced::Settings;
@@ -19,10 +20,23 @@ impl Sandbox for HelloText {
     fn update(&mut self, message: Self::Message) {}
 
     fn view(&mut self) -> Element<Self::Message> {
-        Text::new("Hello, world!").into()
+        Text::new("世界，你好?")
+            .size(40)
+            .color([0.0, 0.0, 1.0])
+            .into()
     }
 }
 
 fn main() {
-    HelloText::run(Settings::default());
+    let setting = Settings {
+        window: window::Settings {
+            size: (800, 600),
+            resizable: true,
+            decorations: true,
+        },
+        flags: (),
+        default_font: Some(include_bytes!("C:\\Windows\\Fonts\\simfang.ttf")),
+        antialiasing: true,
+    };
+    HelloText::run(setting);
 }
